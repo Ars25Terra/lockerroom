@@ -1,0 +1,153 @@
+.person-card {
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-items: center;
+
+  width: 13.25em;
+  height: 15.75em;
+
+  border-radius: 1em;
+
+  gap: 0.625em;
+
+  padding: 1.5em;
+
+  margin-left: 0.375em;
+  margin-right: 0.375em;
+  margin-bottom: 0.75em;
+}
+
+.dark-theme {
+  background-color: #1F2123;
+  border: 1px solid #1F2123;
+  color: #FFFFFF;
+}
+
+.person-text {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.875em;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
+.person-text.additional {
+  font-weight: 400;
+  font-size: 0.7em;
+}
+
+.person-text.additional.person-secondary {
+  opacity: 0.5;
+}
+
+.button {
+  border: 1px solid #FFFFFF;
+  border-radius: 77px;
+  width: 116px;
+  height: 36px;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 16px;
+  letter-spacing: 0.2em;
+}
+
+.portrait {
+  width: 3.75em;
+  height: 3.75em;
+  border-radius: 50%;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.8125em 1.125em;
+  gap: 0.625em;
+  border: 0.0625em solid rgba(255, 255, 255, 0.2);
+  border-radius: 7.5em;
+  background: transparent;
+  order: 0;
+}
+
+.theme-switcher {
+  display: flex;
+  flex-direction: row;
+  color: #FFFFFF;
+}
+
+:root {
+  --bodyColor: "#000000";
+}
+body {
+  background-color: var(--bodyColor);
+  padding: 0.625em;
+  font-family: Montserrat, sans-serif;
+}
+
+.filter-panel {
+  box-sizing: border-box;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5em;
+  width: 20.5em;
+  border-radius: 1em;
+  overflow: auto;
+  height: fit-content;
+  margin-right: 1.125em;
+  margin-left: 45px;
+}
+
+.filter-mobile {
+  flex: 1;
+  flex-direction: row;
+  display: none;
+  justify-content: space-between;
+  color: #FFFFFF;
+}
+
+.age-selector {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-content: space-around;
+}
+
+.age-selector.text-input {
+  width: 2.875em;
+  height: 2.4375em;
+  border-radius: 0.75em;
+}
+
+.main-container {
+  flex: 1;
+  flex-direction: row;
+  display: flex;
+}
+
+.cards-grid {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-items: center;
+}
+
+@media (max-width: 750px) {
+  .filter-panel {
+    display: none;
+  }
+  .filter-mobile {
+    display: flex;
+  }
+  .main-container {
+    flex-direction: column;
+  }
+}
+
+.filter-text {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  letter-spacing: 0.12em;
+}
