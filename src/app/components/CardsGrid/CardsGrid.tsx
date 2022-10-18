@@ -18,6 +18,7 @@ const CardsGrid = (props: IProps & IActions) => {
     return <div className={'cards-grid'}>
         {props.personList.map((person, index) => {
             return <Card theme={props.theme}
+                         key={`personCard${index}`}
                          person={person}
                          onButtonClick={() => handleButtonClick(index)}/>
         })}

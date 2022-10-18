@@ -11,7 +11,7 @@ interface IActions {
 }
 
 const Button = (props: IProps & IActions): JSX.Element => {
-    return <button className={`button ${props.theme}`}
+    return <button className={`button ${props.theme} border ${props.theme}`}
                    onClick={props.onClick}>{props.caption}</button>
 }
 

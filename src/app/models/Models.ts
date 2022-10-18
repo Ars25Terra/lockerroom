@@ -14,4 +14,6 @@ export interface IPerson {
     sport: string
     portraitPath?: string
     isConnected?: boolean
+    age: number
+    gender: string
 }

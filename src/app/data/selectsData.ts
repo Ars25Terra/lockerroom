@@ -16,10 +16,6 @@ export const Sports = [
     value: "artistic gymnastics",
   },
   {
-    label: "Artistic Gymnastics",
-    value: "artistic gymnastics",
-  },
-  {
     label: "Artistic Swimming",
     value: "artistic swimming",
   },
