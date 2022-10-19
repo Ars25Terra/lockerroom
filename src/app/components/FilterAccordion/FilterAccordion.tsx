@@ -6,15 +6,24 @@ import {useState} from "react";
 
 interface IProps {
     id: string
+    /**
+     * Accordion model to render
+     */
     model: IFilterAccordionModel
 }
 
 interface IActions {
-
+    // nothing here
 }
 
+/**
+ * Filter Accordion Component
+ */
 const FilterAccordion = (props: IProps & IActions): JSX.Element => {
 
+    /**
+     * State of Accordion
+     */
     const [isExpanded, setExpanded] = useState<boolean>(false)
 
     return <Accordion

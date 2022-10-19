@@ -18,6 +18,8 @@ interface IProps extends IThemed {
     genderFilter: string
     selectedSportsList: string[]
     selectedCountriesList: string[]
+    isAllButtonPressed: boolean
+    isDraftButtonPressed: boolean
 }
 
 interface IActions {
@@ -27,27 +29,44 @@ interface IActions {
     onSportCheckBoxChange: (checked: boolean, value: string) => void
     onCountryCheckBoxChange: (checked: boolean, value: string) => void
     onChangeShowCardGrid: (value: boolean) => void
+    onAllButtonClick: () => void
+    onDraftButtonClick: () => void
 }
 
+/**
+ * Filter Component
+ */
 const Filter = (props: IProps & IActions): JSX.Element => {
 
+    /**
+     * State for filter panel CSS class name
+     */
     const [filterPanelClass, setFilterPanelClass] = useState<string>('filter-panel')
     const [filterMobilePanelClass, setFilterMobilePanelClass] = useState<string>('filter-mobile')
 
+    /**
+     * Memoizing large lists for better performance - Sport Type Checkbox List
+     */
     const sportsCheckBoxList = useMemo(() => CheckBoxList(
         { list: Sports,
-                checkedIndexesList: props.selectedSportsList,
+                checkedValuesList: props.selectedSportsList,
                 onCheckBoxClick: props.onSportCheckBoxChange }),
         // eslint-disable-next-line
         [props.selectedSportsList])
 
+    /**
+     * Memoizing large lists for better performance - Countries Checkbox list
+     */
     const countriesCheckBoxList = useMemo(() => CheckBoxList(
             { list: CountriesEn,
-                checkedIndexesList: props.selectedCountriesList,
+                checkedValuesList: props.selectedCountriesList,
                 onCheckBoxClick: props.onCountryCheckBoxChange }),
         // eslint-disable-next-line
         [props.selectedCountriesList])
 
+    /**
+     * Filters are added here
+     */
     const filters: IFilterAccordionModel[] = [
         {caption: 'Gender', child: <GenderRadioGroup
                                              value={props.genderFilter}
@@ -75,8 +94,8 @@ const Filter = (props: IProps & IActions): JSX.Element => {
                 </div>
             </div>
             <div className={'filter-buttons-panel'}>
-                <FilterButton caption={'ALL'} onClick={() => {}} theme={props.theme}/>
-                <FilterButton caption={'DRAFT'} onClick={() => {}} theme={props.theme}/>
+                <FilterButton isPressed={props.isAllButtonPressed} caption={'ALL'} onClick={props.onAllButtonClick} theme={props.theme}/>
+                <FilterButton isPressed={props.isDraftButtonPressed} caption={'DRAFT'} onClick={props.onDraftButtonClick} theme={props.theme}/>
             </div>
             {filters.map((filter, index) => {
                 return <FilterAccordion id={`filter${index}`} key={`filter${index}`} model={filter}/>

@@ -1,13 +1,28 @@
 import * as React from 'react';
 
 interface IProps {
+    /**
+     * CSS Class Name
+     */
     className: string
+    /**
+     * Current value
+     */
     value: string
+    /**
+     * Input type
+     */
     type?: string
 }
 
 interface IActions {
+    /**
+     * On Change Text Action
+     */
     onChange: (text: string) => void
+    /**
+     * On loosing focus action
+     */
     onBlur?: () => void
 }
 

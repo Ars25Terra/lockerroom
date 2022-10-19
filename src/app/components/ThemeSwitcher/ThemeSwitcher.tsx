@@ -4,13 +4,19 @@ import './../../style/style.css'
 import {IThemed} from "../../models/Models";
 
 interface IProps extends IThemed{
-
+    // nothing here
 }
 
 interface IActions {
+    /**
+     * On Change Theme Action
+     */
     onChange: (value: string) => void
 }
 
+/**
+ * Theme Switcher Component
+ */
 const ThemeSwitcher = (props: IProps & IActions): JSX.Element => {
     return <div className={`theme-switcher ${props.theme}`}>
         <Text className={`filter-text theme-switcher-text ${props.theme}`} value={'THEME'}/>

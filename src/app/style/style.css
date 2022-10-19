@@ -150,9 +150,13 @@ body {
 }
 
 .age-selector.text-input {
-  width: 2.875em;
+  /*width: 2.875em;*/
   /*height: 2.4375em;*/
-  border-radius: 0.75em;
+  border-radius: 12px;
+  width: 33px;
+  height: 33px;
+  padding: 2px;
+  text-align: center;
 }
 
 .main-container {
@@ -243,6 +247,19 @@ body {
 .filter-button.dark-theme {
   background: #37393B;
   border: 0;
+}
+
+.filter-button.unpressed.dark-theme {
+  background: #1F2123;
+  border: 1px solid #37393B;
+  opacity: 0.5;
+}
+
+.filter-button.unpressed.light-theme {
+  background: transparent;
+  border: 1px solid #E7EBF5;
+  color: #696D7B;
+  opacity: 0.5;
 }
 
 .filter-buttons-panel {

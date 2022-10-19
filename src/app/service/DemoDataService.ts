@@ -2,9 +2,15 @@ import {IPerson} from "../models/Models";
 import {CountriesEn, Gender, positions, Sports} from "../data/selectsData";
 
 export interface IDemoService {
+    /**
+     * Generate demo persons
+     */
     getPersons: (personCount: number) => IPerson[]
 }
 
+/**
+ * Service to generate demo data
+ */
 const DemoDataService = (): IDemoService => {
     const names = ['Jon Mitchell', 'Kira Plastinina']
 
@@ -24,6 +30,7 @@ const DemoDataService = (): IDemoService => {
                     ? names[0]
                     : names[1]
                 result.push({
+                    id: a,
                     name: name,
                     age: age,
                     gender: gender,
