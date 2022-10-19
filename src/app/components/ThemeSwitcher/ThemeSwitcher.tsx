@@ -13,7 +13,7 @@ interface IActions {
 
 const ThemeSwitcher = (props: IProps & IActions): JSX.Element => {
     return <div className={`theme-switcher ${props.theme}`}>
-        <Text className={`filter-text ${props.theme}`} value={'THEME'}/>
+        <Text className={`filter-text theme-switcher-text ${props.theme}`} value={'THEME'}/>
             <RadioGroup row={true}
                         onChange={(_, value) => props.onChange(value)}
                         defaultValue={props.theme ?? 'dark-theme'}>

@@ -46,6 +46,7 @@ function App() {
     const [genderFilter, setGenderFilter] = useState('male')
     const [sportsFilterList, setSportsFilterList] = useState<string[]>(['all'])
     const [countryFilterList, setCountryFilterList] = useState<string[]>(['all'])
+    const [isShowCardGird, setShowCardGrid] = useState<boolean>(true)
     /**
      * All components actions implementation
      */
@@ -61,20 +62,22 @@ function App() {
         setGenderFilter(value)
     }
 
-    const handleSportListFilterChange = (checked: boolean, value: string) => {
-        const indexToRemove = sportsFilterList.indexOf(value)
+    const handleCheckBoxFilterChange = (checked: boolean, value: string,
+                                        checkedFilterList: string[],
+                                        dispatch: React.Dispatch<React.SetStateAction<string[]>>) => {
+        const indexToRemove = checkedFilterList.indexOf(value)
         if (checked) {
             if (value === 'all') {
-                setSportsFilterList(['all'])
+                dispatch(['all'])
                 return
             } else {
-                setSportsFilterList(prevValue => (
-                    prevValue.filter((value, i) => i !== sportsFilterList.indexOf('all'))
+                dispatch(prevValue => (
+                    prevValue.filter((value, i) => i !== checkedFilterList.indexOf('all'))
                 ))
             }
-            setSportsFilterList(sportsFilterList => [...sportsFilterList, value])
+            dispatch(checkedFilterList => [...checkedFilterList, value])
         } else {
-            setSportsFilterList(prevValue => (
+            dispatch(prevValue => (
                 prevValue.filter((value, i) => i !== indexToRemove)
             ));
         }
@@ -95,6 +98,10 @@ function App() {
             return sportsFilterList.length === 0 || sportsFilterList.includes('all')
                 ? true
                 : sportsFilterList.includes(person.sport)
+        }).filter(person => {
+            return countryFilterList.length === 0 || countryFilterList.includes('all')
+                ? true
+                : countryFilterList.includes(person.country)
         })
     }
 
@@ -108,13 +115,14 @@ function App() {
                         genderFilter={genderFilter}
                         searchString={searchString}
                         ageFilterRange={ageFilterRange}
-                        onCountryCheckBoxChange={()=>{}}
-                        onSportCheckBoxChange={handleSportListFilterChange}
+                        onCountryCheckBoxChange={(checked, value) => handleCheckBoxFilterChange(checked, value, countryFilterList, setCountryFilterList)}
+                        onChangeShowCardGrid={(value) => setShowCardGrid(value)}
+                        onSportCheckBoxChange={(checked, value) => handleCheckBoxFilterChange(checked, value, sportsFilterList, setSportsFilterList)}
                         onSearchStringChange={handleSearchStringChange}
                         onGenderFilterChange={handleGenderFilterChange}
                         onAgeFilterChange={handleAgeFilterChange}/>
             </div>
-            <CardsGrid theme={theme} personList={getFilteredPersons(persons)}/>
+            {isShowCardGird && <CardsGrid theme={theme} personList={getFilteredPersons(persons)}/>}
         </div>
     </ThemeProvider>)
 
