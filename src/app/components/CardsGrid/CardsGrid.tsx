@@ -3,23 +3,29 @@ import Card from "../Card/Card";
 import {IPerson, IThemed} from "../../models/Models";
 
 interface IProps extends IThemed {
+    /**
+     * List of Persons
+     */
     personList: IPerson[]
 }
 
 interface IActions {
-    //onCardButtonClick: (inedx: number) => void
+    /**
+     * On click card button action
+     */
+    onCardButtonClick: (id: number) => void
 }
 
-const handleButtonClick = (index: number) => {
-    console.log(index)
-}
-
+/**
+ * Persons Cards Grid Component
+ */
 const CardsGrid = (props: IProps & IActions) => {
     return <div className={'cards-grid'}>
         {props.personList.map((person, index) => {
             return <Card theme={props.theme}
+                         key={`personCard${index}`}
                          person={person}
-                         onButtonClick={() => handleButtonClick(index)}/>
+                         onButtonClick={() => props.onCardButtonClick(person.id)}/>
         })}
     </div>
 }
