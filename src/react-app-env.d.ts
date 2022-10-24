@@ -1,1 +1,1 @@
-/// <reference types="react-scripts" />
+import '<reference types="react-scripts" />'

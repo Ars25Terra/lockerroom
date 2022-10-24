@@ -1,0 +1,59 @@
+@use 'themes' as *;
+
+@mixin create-class($class) {
+  .#{$class} {
+    background-color: map-get(getTheme($class), 'bgColor1');
+    h1 {
+      color: map-get(getTheme($class), 'h1Color');
+      background: transparent;
+      letter-spacing: 0.01em;
+    }
+    h2 {
+      color: map-get(getTheme($class), 'h2Color');
+      background: transparent;
+      letter-spacing: 0.01em;
+    }
+    h3 {
+      color: map-get(getTheme($class), 'h3Color');
+      background: transparent;
+      letter-spacing: 0.01em;
+    }
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Montserrat, sans-serif;
+  min-height: 100vh;
+  @include create-class('dark');
+  @include create-class('light');
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+h2 {
+  font-weight: 400;
+  font-size: 0.625rem;
+}
+
+h3 {
+  font-weight: 400;
+  font-size: 0.625rem;
+}
+
+.flex {
+  display: flex;
+  min-height: 100vh;
+  //align-content: center;
+  justify-content: center;
+  //justify-items: center;
+  //align-items: center;
+}

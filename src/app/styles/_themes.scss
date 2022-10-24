@@ -1,0 +1,25 @@
+@use "colors" as *;
+
+$themes: (
+  light: (
+    bgColor1: $silver-gray-color,
+    bgColor2: $white-color,
+    h1Color: $black-color,
+    h2Color: $lighter-dark-gray-color,
+    h3Color: $dark-gray-color,
+    checkBoxBorderColor: $black-color
+  ),
+  dark: (
+    bgColor1: $black-color,
+    bgColor2: $dark-gray-color,
+    h1Color: $white-color,
+    h2Color: $lighter-dark-gray-color,
+    h3Color: $silver-gray-color,
+    checkBoxBorderColor: $white-color
+  ),
+);
+
+@function getTheme($themeName) {
+  $result: map-get($themes, $themeName);
+  @return $result;
+}

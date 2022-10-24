@@ -1,0 +1,18 @@
+@use './../../styles/colors' as *;
+@use './../../styles/themes' as *;
+
+.filter {
+  width: 328px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  height: fit-content !important;
+  margin-right: 24px;
+  padding: 24px;
+  &.dark {
+    background-color: map-get(getTheme('dark'), 'bgColor2') !important;
+  }
+  &.light {
+    background-color: map-get(getTheme('light'), 'bgColor2') !important;
+  }
+}

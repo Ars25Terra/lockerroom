@@ -1,0 +1,78 @@
+@use './src/app/styles/colors' as *;
+@use './src/app/styles/themes' as *;
+
+.checkbox {
+
+  background: transparent !important;
+
+  &.dark {
+    color: #cccccc;
+  }
+  &.light {
+    color: #1F2123;
+  }
+
+  .container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 12px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    word-wrap: break-word;
+    overflow: hidden;
+  }
+
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+  }
+
+  .checkmark {
+
+    &.dark {
+      box-shadow: inset 0 0 0 1px map-get(map-get($themes, 'dark'), 'checkBoxBorderColor');
+    }
+
+    &.light {
+      box-shadow: inset 0 0 0 1px map-get(map-get($themes, 'light'), 'checkBoxBorderColor');
+    }
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 14px;
+    width: 14px;
+    border-radius: 4px;
+  }
+
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+
+  .container input:checked ~ .checkmark {
+    background-color: transparent;
+  }
+
+  .checkmark:after {
+    content: "\2713";
+    position: absolute;
+    display: none;
+    color: #2DE014
+  }
+
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  .container .checkmark:after {
+    left: 2px;
+    top: -3px;
+  }
+}

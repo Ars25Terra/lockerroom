@@ -1,39 +1,49 @@
-import '../../style/style.css'
-import React from 'react';
-import Text from "../Text/Text";
+import './Card.scss'
+import React, { useContext } from 'react'
 import Button from '../Buttons/Button'
-import Portrait from "./Portrait";
-import {IThemed, IPerson} from "../../models/Models";
-import {CountriesEn, Sports} from "../../data/selectsData";
+import Portrait from './Portrait'
+import { IPerson } from '../../models/Models'
+import { CountriesEn, Sports } from '../../data/selectsData'
+import { ThemeContext } from '../ThemeProvider/ThemeProvider'
 
-interface IProps extends IThemed {
-    /**
-     * Person Object
-     */
-    person: IPerson
+interface IProps {
+  /**
+   * Person Object
+   */
+  person: IPerson
 }
 
 interface IActions {
-    /**
-     * On Connect Button click action
-     */
-    onButtonClick: () => void
+  /**
+   * On Connect Button click action
+   */
+  onButtonClick: () => void
 }
 
 /**
  * Person Card Component
  */
 const Card = (props: IProps & IActions): JSX.Element => {
-    return <div className={`person-card ${props.theme}`}>
-        <Portrait/>
-        <Text hideLongText={true} className={`person-text ${props.theme}`} value={props.person.name}/>
-        <Text className={`person-text additional person-secondary ${props.theme}`} value={props.person.position}/>
-        <Text className={`person-text additional person-secondary ${props.theme}`} value={CountriesEn.find(cnt => cnt.value === props.person.country)?.label ?? 'None'}/>
-        <Text className={`person-text additional ${props.theme}`} value={Sports.find(sport => sport.value === props.person.sport)?.label ?? 'None'}/>
-        <Button theme={props.theme}
-                caption={!props.person.isConnected ? `+ Connect` : `Message`}
-                onClick={props.onButtonClick}/>
+  const { theme } = useContext(ThemeContext)
+  return (
+    <div className={`Card ${theme}`}>
+      <Portrait />
+        <h1>{props.person.name}</h1>
+      <h2>{props.person.position}</h2>
+      <h2>
+        {CountriesEn.find((cnt) => cnt.value === props.person.country)?.label ??
+          'None'}
+      </h2>
+      <h3>
+        {Sports.find((sport) => sport.value === props.person.sport)?.label ??
+          'None'}
+      </h3>
+      <Button
+        caption={props.person.isConnected === false ? '+ Connect' : 'Message'}
+        onClick={props.onButtonClick}
+      />
     </div>
+  )
 }
 
 export default Card

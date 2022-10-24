@@ -1,27 +1,24 @@
-import React from 'react';
-import '../../style/style.css'
-import {IThemed} from "../../models/Models";
+import React from 'react'
 
-interface IProps extends IThemed {
-    /**
-     * Button caption
-     */
-    caption: string
+interface IProps {
+  /**
+   * Button caption
+   */
+  caption: string
 }
 
 interface IActions {
-    /**
-     * On Button Click Action
-     */
-    onClick: () => void
+  /**
+   * On Button Click Action
+   */
+  onClick: () => void
 }
 
 /**
  * Button Component
  */
 const Button = (props: IProps & IActions): JSX.Element => {
-    return <button className={`button ${props.theme} border ${props.theme}`}
-                   onClick={props.onClick}>{props.caption}</button>
+  return <button onClick={props.onClick}>{props.caption}</button>
 }
 
 export default Button

@@ -1,0 +1,19 @@
+@use './src/app/styles/themes' as *;
+
+.Card {
+  border-radius: 1rem;
+  width: 13.25rem;
+  height: 15.75rem;
+  padding: 1.5rem;
+  //text-align: center;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  &.dark {
+    background-color: map-get(map-get($themes, 'dark'), 'bgColor2');
+  }
+  &.light {
+    background-color: map-get(map-get($themes, 'light'), 'bgColor2');
+  }
+}
